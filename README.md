@@ -1,27 +1,44 @@
-# 🎨 Beautiful Terminal & VS Code Theme Setup
+# 🎨 VS Code Custom Theme Setup
 
-This package includes all the configurations for a beautiful, color-coded terminal setup with Starship prompt AND a custom VS Code theme!
+Transform your VS Code and terminal into a beautiful, colorful coding environment with just one command!
 
-## 📸 What You'll Get
+## ✨ Features
 
-- **Colorful command prompt** with git branch info
-- **Syntax highlighting** while typing commands
-- **Custom git colors** for better readability
-- **Custom VS Code theme** matching your terminal colors
-- **Works everywhere**: VS Code, Warp, Terminal.app, iTerm2
+This setup completely transforms your development environment with:
+- **Custom VS Code theme** - "Colorful Carbon" inspired by Vira theme
+- **Beautiful terminal colors** - Consistent color scheme across VS Code and external terminals
+- **Smart syntax highlighting** - Commands in green, directories in blue, git info in pink
+- **Git integration** - Colored output for better readability
+- **One-click installation** - Automated setup script handles everything
 
 ## 🚀 Quick Installation
 
-1. **Download the setup script** (`terminal-theme-setup.sh`)
+```bash
+# Clone the repository
+git clone https://github.com/Sonali-Sharma-tech/vscode-custom-theme-setup.git
+cd vscode-custom-theme-setup
 
-2. **Run it**:
-   ```bash
-   bash terminal-theme-setup.sh
-   ```
+# Run the setup script
+./terminal-theme-setup.sh
 
-3. **Restart your terminal**
+# Restart your terminal and VS Code
+```
 
-That's it! 🎉
+That's it! Your development environment is now transformed! 🎉
+
+## 📋 Requirements
+
+- **macOS** or **Linux** (Windows WSL supported)
+- **VS Code** installed
+- **Zsh** shell (default on macOS)
+- **Homebrew** (will be installed if not present)
+
+## 📦 What Gets Installed
+
+- **Terminal Tools**: Starship prompt, zsh-autosuggestions, zsh-syntax-highlighting, fzf
+- **VS Code Theme**: Colorful Carbon theme with custom colors
+- **Shell Configuration**: Customized .zshrc with syntax highlighting
+- **Git Configuration**: Enhanced color output for better readability
 
 ## 🎨 Color Scheme
 
@@ -75,11 +92,12 @@ If the script doesn't work, you can manually:
 - **Change command colors**: Edit the `ZSH_HIGHLIGHT_STYLES` in `~/.zshrc`
 - **Change git colors**: Use `git config --global color.*` commands
 
-## 🤝 Sharing
+## 🤝 Contributing
 
-To share with others, just send them:
-1. The `terminal-theme-setup.sh` script
-2. This README
+Found a bug or have a suggestion? Feel free to:
+- Open an issue
+- Submit a pull request
+- Fork and customize for your needs
 
 ## 📱 VS Code Integration
 
