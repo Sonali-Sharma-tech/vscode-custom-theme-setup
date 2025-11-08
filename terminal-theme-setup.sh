@@ -240,7 +240,56 @@ git config --global color.diff.new "green"
 
 echo -e "${GREEN}✓ Git colors configured${NC}"
 
-# Step 7: Final instructions
+# Step 7: VS Code Theme Setup
+echo -e "\n${BLUE}Step 7: Setting up VS Code theme...${NC}"
+
+# Check if VS Code is installed
+if command_exists code; then
+    # Get VS Code extensions directory
+    if [ -d "$HOME/Library/Application Support/Code/User" ]; then
+        VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
+    elif [ -d "$HOME/.config/Code/User" ]; then
+        VSCODE_USER_DIR="$HOME/.config/Code/User"
+    else
+        echo -e "${YELLOW}⚠ Could not find VS Code user directory${NC}"
+        VSCODE_USER_DIR=""
+    fi
+
+    if [ -n "$VSCODE_USER_DIR" ]; then
+        # Backup existing VS Code settings
+        if [ -f "$VSCODE_USER_DIR/settings.json" ]; then
+            cp "$VSCODE_USER_DIR/settings.json" "$VSCODE_USER_DIR/settings.json.backup_$timestamp"
+            echo -e "${GREEN}✓ Backed up VS Code settings${NC}"
+        fi
+
+        # Copy VS Code theme
+        mkdir -p "$VSCODE_USER_DIR/themes"
+        cp themes/vscode/colorful-theme.json "$VSCODE_USER_DIR/themes/colorful-carbon.json"
+        echo -e "${GREEN}✓ Installed Colorful Carbon theme${NC}"
+
+        # Merge VS Code settings
+        if [ -f "$VSCODE_USER_DIR/settings.json" ]; then
+            echo -e "${YELLOW}Merging VS Code settings...${NC}"
+            echo ""
+            echo -e "${YELLOW}Please manually add these settings to your VS Code:${NC}"
+            echo '  "workbench.colorTheme": "Colorful Carbon",'
+            echo '  "terminal.integrated.fontFamily": "MesloLGS NF, SF Mono, Monaco, '"'"'Courier New'"'"', monospace",'
+            echo ""
+            echo "Or copy the complete settings from: configs/vscode-settings.json"
+        else
+            # Copy the settings file if it doesn't exist
+            cp configs/vscode-settings.json "$VSCODE_USER_DIR/settings.json"
+            echo -e "${GREEN}✓ Installed VS Code settings${NC}"
+        fi
+    fi
+else
+    echo -e "${YELLOW}⚠ VS Code not installed. Skipping theme setup.${NC}"
+    echo "  To install later, copy:"
+    echo "  - themes/vscode/colorful-theme.json to your VS Code themes folder"
+    echo "  - configs/vscode-settings.json to your VS Code settings"
+fi
+
+# Step 8: Final instructions
 echo -e "\n${GREEN}✨ Setup Complete! ✨${NC}"
 echo -e "\n${YELLOW}To apply the changes:${NC}"
 echo "1. Restart your terminal or run: source ~/.zshrc"
@@ -255,7 +304,12 @@ echo "• Untracked Files: Purple"
 echo "• Errors: Red"
 echo "• Success: Green"
 echo ""
-echo -e "${YELLOW}Optional: Install Warp Terminal${NC}"
-echo "brew install --cask warp"
+echo -e "${YELLOW}Optional: Install Additional Tools${NC}"
+echo "• Warp Terminal: brew install --cask warp"
+echo "• VS Code: brew install --cask visual-studio-code"
+echo ""
+echo -e "${GREEN}VS Code Theme:${NC}"
+echo "• Theme Name: Colorful Carbon"
+echo "• Location: ~/Library/Application Support/Code/User/themes/colorful-carbon.json"
 echo ""
 echo "Enjoy your colorful terminal! 🎨"
